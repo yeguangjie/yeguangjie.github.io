@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hexo与GitHub关联，打造自己的个人博客 | YGJ的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="yeguangjie,yeguangjie's Blog" />
+  
+  <meta name="description" content="一. 前期准备&amp;emsp;&amp;emsp;首先去下载Hexo安装，再下载msysgit安装；安装完成之后在任意地方打开命令行，分别输入hexo version和git version,看到这样的图片表示安装成功  之后去GitHub上面注册个自己的账号 二. 建本地的hexo博客&amp;emsp;&amp;emsp;在本地电脑上新建个存放博客文件的文件夹，比如blog.然后在blog文件夹里打开命令行。分别运行12">
+<meta name="keywords" content="github,hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo与GitHub关联，打造自己的个人博客">
+<meta property="og:url" content="http://www.yeguangjie.xyz/2017/11/19/1_hexo与GitHub相关联_2017-11-19/index.html">
+<meta property="og:site_name" content="YGJ的博客">
+<meta property="og:description" content="一. 前期准备&amp;emsp;&amp;emsp;首先去下载Hexo安装，再下载msysgit安装；安装完成之后在任意地方打开命令行，分别输入hexo version和git version,看到这样的图片表示安装成功  之后去GitHub上面注册个自己的账号 二. 建本地的hexo博客&amp;emsp;&amp;emsp;在本地电脑上新建个存放博客文件的文件夹，比如blog.然后在blog文件夹里打开命令行。分别运行12">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2017-11-19_1_miho.jpg">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2017-11-19_2_miho.jpg">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2017-11-19_3_miho.jpg">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2017-11-19_4_miho.jpg">
+<meta property="og:updated_time" content="2017-11-20T14:42:45.096Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo与GitHub关联，打造自己的个人博客">
+<meta name="twitter:description" content="一. 前期准备&amp;emsp;&amp;emsp;首先去下载Hexo安装，再下载msysgit安装；安装完成之后在任意地方打开命令行，分别输入hexo version和git version,看到这样的图片表示安装成功  之后去GitHub上面注册个自己的账号 二. 建本地的hexo博客&amp;emsp;&amp;emsp;在本地电脑上新建个存放博客文件的文件夹，比如blog.然后在blog文件夹里打开命令行。分别运行12">
+<meta name="twitter:image" content="http://www.yeguangjie.xyz/images/2017-11-19_1_miho.jpg">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">YeGuangJie&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>首页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>档案</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        YeGuangJie&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        分享我的知识与见解，希望可以帮到你
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="YGJ" target="_blank" href="//yeguangjie.github.io">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/yeguangjie">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="扫一扫加我QQ好友" target="_blank" href="/images/qq.jpg">
+                            <i class="fa fa-qq fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-1_hexo与GitHub相关联_2017-11-19" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      hexo与GitHub关联，打造自己的个人博客
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/非技术分享/">非技术分享</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2017-11-19
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一-前期准备"><a href="#一-前期准备" class="headerlink" title="一. 前期准备"></a>一. 前期准备</h3><p>&emsp;&emsp;首先去下载<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Hexo</a>安装，再下载<a href="https://git-for-windows.github.io/" target="_blank" rel="noopener">msysgit</a>安装；安装完成之后在任意地方打开命令行，分别输入hexo version和git version,看到这样的图片表示安装成功</p>
+<p><img src="/images/2017-11-19_1_miho.jpg" alt="图片"></p>
+<p>之后去<a href="https://github.com" target="_blank" rel="noopener">GitHub</a>上面注册个自己的账号</p>
+<h3 id="二-建本地的hexo博客"><a href="#二-建本地的hexo博客" class="headerlink" title="二. 建本地的hexo博客"></a>二. 建本地的hexo博客</h3><p>&emsp;&emsp;在本地电脑上新建个存放博客文件的文件夹，比如blog.然后在blog文件夹里打开命令行。分别运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line">hexo server/hexo s</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;运行hexo init命令后，系统会帮我们自动创建文件夹以及帮我们安装依赖，如果安装依赖失败，可以试试这个命令。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;此时打开浏览器，在地址栏输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:4000</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;如果能看到hexo默认的hello world界面，表示本地hexo创建成功，当然我们并不希望用这个默认的博客框架，那就可以去<a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo</a>官网下载模板，之后放到刚刚新建的blog/themes下面，然后在blog/_comfig.yml文件中的theme: landscape换成theme: &lt;你的主题文件夹名&gt;就可以了，其他的个别主题有自己的个性化配置可以看那个主题的介绍。</p>
+<h3 id="三-建立GitHub与本地Hexo的关联"><a href="#三-建立GitHub与本地Hexo的关联" class="headerlink" title="三. 建立GitHub与本地Hexo的关联"></a>三. 建立GitHub与本地Hexo的关联</h3><h4 id="3-1-生成自己电脑的SSH"><a href="#3-1-生成自己电脑的SSH" class="headerlink" title="3.1 生成自己电脑的SSH"></a>3.1 生成自己电脑的SSH</h4><p>&emsp;&emsp;然后打开<a href="https://github.com" target="_blank" rel="noopener">GitHub</a>,登录进去自己的账户，新建个repository，将repository的命名为&lt;自己的GitHub名&gt;.github.io</p>
+<p><img src="/images/2017-11-19_2_miho.jpg" alt="图片"></p>
+<p>&emsp;&emsp;在本地电脑上右击鼠标打开git bash here，输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.ssh</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;之后再输入ls,检查是否有.ssh文件夹,如果显示这样，就说明存在</p>
+<p><img src="/images/2017-11-19_3_miho.jpg" alt="图片"></p>
+<p>&emsp;&emsp;如果没有，则输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C “XXX@qq.com”</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;然后三个回车，生成密钥，最后得到两个文件：id_rsa和id_rsa.pub,<br>路径为C:\Users\Administrator.ssh。（其中<a href="mailto:XXX@qq.com" target="_blank" rel="noopener">XXX@qq.com</a>表示你注册github时填写的邮箱）。之后再输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(ssh-agent -s)</span>"</span></span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;添加密钥到ssh-agent<br>&emsp;&emsp;再输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;添加生成的SSH key到ssh-agent。<br>&emsp;&emsp;之后将id_rsa.pub的文件内容复制到GitHub头像下的settings下面的SSH keys中。</p>
+<p>&emsp;&emsp;这时在本地电脑上输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;用来测试添加SSH是否成功（同时这也可以将github上的ssh关联到本地电脑，因为当时我的github上面有多个ssh，当我运行整个命令后，GitHub上自己电脑对应的SSH才显示为可用状态），如果看到hi,&lt;你的GitHub用户名&gt;…，像这样，那就表示添加ssh成功了</p>
+<p><img src="/images/2017-11-19_4_miho.jpg" alt="图片"></p>
+<h4 id="3-2-配置deployment"><a href="#3-2-配置deployment" class="headerlink" title="3.2 配置deployment"></a>3.2 配置deployment</h4><p>&emsp;&emsp;在hexo根目录里，找到_config.yml文件，打开，将末尾的文件内容修改成这样（把其中的yeguangjie换成你自己的GitHub名）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: git@github.com:yeguangjie/yeguangjie.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
+<h3 id="四：-发布本地的hexo到github上"><a href="#四：-发布本地的hexo到github上" class="headerlink" title="四： 发布本地的hexo到github上"></a>四： 发布本地的hexo到github上</h3><p>&emsp;&emsp;通过两个命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;完成之后，你就可以通过https://&lt; github名&gt;.github.io访问你的博客首页了</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2017年11月20日 22:42</p>
+        <p>原始链接： <a class="post-url" href="/2017/11/19/1_hexo与GitHub相关联_2017-11-19/" title="hexo与GitHub关联，打造自己的个人博客">http://www.yeguangjie.xyz/2017/11/19/1_hexo与GitHub相关联_2017-11-19/</a></p>
+        <footer>
+            <a href="http://www.yeguangjie.xyz">
+                <img src="/images/logo.png" alt="Ye GuangJie">
+                Ye GuangJie
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.yeguangjie.xyz/2017/11/19/1_hexo与GitHub相关联_2017-11-19/&title=《hexo与GitHub关联，打造自己的个人博客》 — YGJ的博客&pic=http://www.yeguangjie.xyzimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.yeguangjie.xyz/2017/11/19/1_hexo与GitHub相关联_2017-11-19/&title=《hexo与GitHub关联，打造自己的个人博客》 — YGJ的博客&source=希望我的分享可以帮助到你" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.yeguangjie.xyz/2017/11/19/1_hexo与GitHub相关联_2017-11-19/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《hexo与GitHub关联，打造自己的个人博客》 — YGJ的博客&url=http://www.yeguangjie.xyz/2017/11/19/1_hexo与GitHub相关联_2017-11-19/&via=http://www.yeguangjie.xyz" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.yeguangjie.xyz/2017/11/19/1_hexo与GitHub相关联_2017-11-19/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://www.yeguangjie.xyz/2017/11/19/1_hexo与GitHub相关联_2017-11-19/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/github/" class="color2">github</a>
+      
+    <a href="/tags/hexo/" class="color5">hexo</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一-前期准备"><span class="post-toc-text">一. 前期准备</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二-建本地的hexo博客"><span class="post-toc-text">二. 建本地的hexo博客</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三-建立GitHub与本地Hexo的关联"><span class="post-toc-text">三. 建立GitHub与本地Hexo的关联</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-1-生成自己电脑的SSH"><span class="post-toc-text">3.1 生成自己电脑的SSH</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-2-配置deployment"><span class="post-toc-text">3.2 配置deployment</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四：-发布本地的hexo到github上"><span class="post-toc-text">四： 发布本地的hexo到github上</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2017/11/20/2-eclipsese中outline视图图标详解-2017-11-20/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          eclipse中outline视图中 图标总结
+        
+      </span>
+    </a>
+  
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 Ye GuangJie<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://www.yeguangjie.xyz",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/IDE/">IDE</a><a class="category-link" href="/categories/非技术分享/">非技术分享</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>首页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>档案</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>
