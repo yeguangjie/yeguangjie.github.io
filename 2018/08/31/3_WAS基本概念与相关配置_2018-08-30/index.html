@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>WAS基本概念与相关配置 | YGJ的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="yeguangjie,yeguangjie's Blog" />
+  
+  <meta name="description" content="一. 简介&amp;emsp;&amp;emsp;WAS（WebSphere Application Server）是一种应用服务器，与Tomcat/JBoss类似，可以部署在服务器中，而作为应用程序的容器，应用程序可以部署到WAS中。WebSphere有很多版本，主要有application server base版、express精简版、community edition社区版和network deploym">
+<meta name="keywords" content="WebSphere Application Server">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WAS基本概念与相关配置">
+<meta property="og:url" content="http://www.yeguangjie.xyz/2018/08/31/3_WAS基本概念与相关配置_2018-08-30/index.html">
+<meta property="og:site_name" content="YGJ的博客">
+<meta property="og:description" content="一. 简介&amp;emsp;&amp;emsp;WAS（WebSphere Application Server）是一种应用服务器，与Tomcat/JBoss类似，可以部署在服务器中，而作为应用程序的容器，应用程序可以部署到WAS中。WebSphere有很多版本，主要有application server base版、express精简版、community edition社区版和network deploym">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_1_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_2_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_3_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_4_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_5_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_6_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_7_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_8_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_9_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_10_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_11_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_12_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_13_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_14_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_15_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_16_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_17_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_18_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_19_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_9_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_20_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_21_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_22_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_23_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_24_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_25_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_26_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_27_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_28_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_29_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_30_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_31_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_32_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_33_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_34_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_35_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_36_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_37_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_38_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_39_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_40_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_41_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_42_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_43_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_44_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_45_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_46_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_47_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_48_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_49_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_50_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_51_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_52_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_53_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_54_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_55_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_56_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-08-30_57_miho.png">
+<meta property="og:updated_time" content="2018-08-31T06:43:49.501Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WAS基本概念与相关配置">
+<meta name="twitter:description" content="一. 简介&amp;emsp;&amp;emsp;WAS（WebSphere Application Server）是一种应用服务器，与Tomcat/JBoss类似，可以部署在服务器中，而作为应用程序的容器，应用程序可以部署到WAS中。WebSphere有很多版本，主要有application server base版、express精简版、community edition社区版和network deploym">
+<meta name="twitter:image" content="http://www.yeguangjie.xyz/images/2018-08-30_1_miho.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">YeGuangJie&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>首页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>档案</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        YeGuangJie&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        分享我的知识与见解，希望可以帮到你
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="YGJ" target="_blank" href="//yeguangjie.github.io">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/yeguangjie">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="扫一扫加我QQ好友" target="_blank" href="/images/qq.jpg">
+                            <i class="fa fa-qq fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-3_WAS基本概念与相关配置_2018-08-30" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      WAS基本概念与相关配置
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/应用服务器/">应用服务器</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-08-31
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一-简介"><a href="#一-简介" class="headerlink" title="一. 简介"></a>一. 简介</h3><p>&emsp;&emsp;WAS（WebSphere Application Server）是一种应用服务器，与Tomcat/JBoss类似，可以部署在服务器中，而作为应用程序的容器，应用程序可以部署到WAS中。WebSphere有很多版本，主要有application server base版、express精简版、community edition社区版和network deployment版等。根据架构的不同，WAS可以分为两类：</p>
+<h4 id="1-1、stand-alone架构"><a href="#1-1、stand-alone架构" class="headerlink" title="1.1、stand-alone架构"></a>1.1、stand-alone架构</h4><p><img src="/images/2018-08-30_1_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;由图可知，stand-alone是单层架构，在这个架构中只有一个application server概要（注：概要是一系列不同配置的集合）。在这个架构下，WAS中包含各种容器，包括web container（web容器给JSP、servlet等应用程序组件提供运行环境，主要是和基于HTTP的请求打交道）和EJB container（EJB容器主要给类似邮件服务、事务管理等的EJB组件提供运行环境，更多的是和数据库和其他服务打交道）、JMX（JMX是一个为应用程序、设备、系统等植入管理功能的框架）、安全组件、web server engine、消息引擎、动态缓存以及一些其他服务。</p>
+<h4 id="1-2、ND架构"><a href="#1-2、ND架构" class="headerlink" title="1.2、ND架构"></a>1.2、ND架构</h4><p><img src="/images/2018-08-30_2_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;在ND架构中，WAS是两层管理架构，最大管理单位是单元（cell）,每个单元里有一个部署管理器（deployment manager），每个部署管理下可以有多个节点（Node），每个节点中都会有节点代理器（node agent），用来管理每个节点下的server，而每个节点下可以有多个server，每个server上可以有多个应用程序。部署管理器中存在一个主配置文件，每个节点中存在副本配置文件，部署管理器通过文件同步服务将副本配置文件与主配置文件保持同步，如下图。</p>
+<p><img src="/images/2018-08-30_3_miho.png" alt="图片"></p>
+<h4 id="1-3、组件IHS和plug-in"><a href="#1-3、组件IHS和plug-in" class="headerlink" title="1.3、组件IHS和plug-in"></a>1.3、组件IHS和plug-in</h4><p>&emsp;&emsp;不管在stand-alone还是ND架构中，可以通过部署IHS和plug-in组件来设置代理访问WAS中server上的应用程序。其基本原理就是通过plugin-cfg.xml(映射记录表)来映射外部访问IHS的地址到WAS地址的转换。根据IHS和ND架构的搭配又划分为以下几种结构。</p>
+<h5 id="1-3-1、两台IHS和plug-in"><a href="#1-3-1、两台IHS和plug-in" class="headerlink" title="1.3.1、两台IHS和plug-in"></a>1.3.1、两台IHS和plug-in</h5><p><img src="/images/2018-08-30_4_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;部署两台IHS和plug-in,它们之间通过Load balancer(负载均衡器)连接。外部浏览器访问的时候不是直接访问IHS，而是通过访问负载均衡器而间接访问IHS，从而实现负载均衡。</p>
+<h5 id="1-3-2、IHS和plug-in不在cell-单元-管理下"><a href="#1-3-2、IHS和plug-in不在cell-单元-管理下" class="headerlink" title="1.3.2、IHS和plug-in不在cell(单元)管理下"></a>1.3.2、IHS和plug-in不在cell(单元)管理下</h5><p><img src="/images/2018-08-30_5_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;IHS和plug-in不在单元的任何一个节点之下,部署管理器就无法通过节点代理器管理到IHS，此时IHS和plug-in就成为未被管理区。这时只能通过手动地在单元和IHS之间复制plugin-cfg.xml配置文件达到协同工作的目的。</p>
+<h5 id="1-3-3、IHS和plug-in在cell-单元-管理下，通过节点代理器管理"><a href="#1-3-3、IHS和plug-in在cell-单元-管理下，通过节点代理器管理" class="headerlink" title="1.3.3、IHS和plug-in在cell(单元)管理下，通过节点代理器管理"></a>1.3.3、IHS和plug-in在cell(单元)管理下，通过节点代理器管理</h5><p><img src="/images/2018-08-30_6_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;此时IHS和plug-in成为部署管理器下的一个节点，可以不使用节点代理器，而启动一个远程操作的进程，即IHS管理进程，来让部署管理器实现对IHS和plug-in远程管理。</p>
+<h5 id="1-3-4、IHS和plug-in不在cell-单元-管理下-通过IHS管理进程管理"><a href="#1-3-4、IHS和plug-in不在cell-单元-管理下-通过IHS管理进程管理" class="headerlink" title="1.3.4、IHS和plug-in不在cell(单元)管理下,通过IHS管理进程管理"></a>1.3.4、IHS和plug-in不在cell(单元)管理下,通过IHS管理进程管理</h5><p><img src="/images/2018-08-30_7_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;IHS和plug-in不在单元的任何一个节点之下,部署管理器就无法通过节点代理器管理到IHS，此时IHS和plug-in就成为未被管理区。这时只能通过手动地在单元和IHS之间复制plugin-cfg.xml配置文件达到协同工作的目的。</p>
+<h5 id="1-3-5、WAS灵活管理"><a href="#1-3-5、WAS灵活管理" class="headerlink" title="1.3.5、WAS灵活管理"></a>1.3.5、WAS灵活管理</h5><p><img src="/images/2018-08-30_8_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;当不同的单元需要统一管理时，则需要通过admin代理器和job manager。admin代理器是直接管理的，部署管理器是通过各个节点代理器来管理各个节点的。之后job manager通过作业方式（异步方式）来连接不同的单元和节点</p>
+<h3 id="二-WAS的安装"><a href="#二-WAS的安装" class="headerlink" title="二. WAS的安装"></a>二. WAS的安装</h3><p>&emsp;&emsp;本文中WAS的安装是基于centos下的WAS8.5.5，需要用vmware 14打开。<a href="https://pan.baidu.com/s/1v4CeQZ6FmTYNPYhcKjJJyQ" target="_blank" rel="noopener">百度云链接</a>,密码是msq2。登录管理员：root,root123。</p>
+<h4 id="2-1、安装IIM"><a href="#2-1、安装IIM" class="headerlink" title="2.1、安装IIM"></a>2.1、安装IIM</h4><p>&emsp;&emsp;首先打开/root/Downloads,里面的目录结构如下图，其中第一个agent.installer.linux.gtk.x86_64_1.8.6000.20161118_1611.zip是IIM安装介质，第二个到第四个是WAS network deployment版的安装介质，最后三个是IHS和plug-in的安装介质文件。</p>
+<p><img src="/images/2018-08-30_9_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;先利用unzip命令解压agent.installer.linux.gtk.x86_64_1.8.6000.20161118_1611.zip到当前目录，解压完成后再用./install安装好IIM安装工具。再去到这个文件夹打开/opt/IBM/InstallationManager/eclipse/下打开IBMIM.sh文件，打开IIM安装工具，安装好IIM。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/IBM/InstallationManager/eclipse/IBMIM</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-2、安装WAS"><a href="#2-2、安装WAS" class="headerlink" title="2.2、安装WAS"></a>2.2、安装WAS</h4><p>&emsp;&emsp;解压缩Downloads下的三个文件，分别是WAS_ND_V8.5.5_1_OF_3.zip、WAS_ND_V8.5.5_2_OF_3.zip、WAS_ND_V8.5.5_3_OF_3.zip。为了防止与之前解压的文件出现冲突，最好新建个文件夹，将三个压缩包放到新建的文件夹下解压。然后去到/opt/IBM/InstallationManager/eclipse/IBMIM打开IIM，新建repository，如下图：</p>
+<p><img src="/images/2018-08-30_10_miho.png" alt="图片"></p>
+<p>并把这个repository指向刚刚解压出来的文件目录中的repository.config文件，完成之后回到安装主界面点选安装，其中到下图这个界面之后点选simplified chinese,其他界面一直下一步。</p>
+<p><img src="/images/2018-08-30_11_miho.png" alt="图片"></p>
+<p>WAS家目录为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/IBM/WebSphere/AppServer/</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;WAS_HOME/bin/versioninfo.sh:查看WAS的版本信息。<br>&emsp;&emsp;WAS_HOME/bin/ProfileManagement/wct.sh:打开创建概要的GUI界面。<br>&emsp;&emsp;WAS_HOME/bin/backupConfig.sh:运行脚本backupConfig.sh，备份当前的概要。<br>&emsp;&emsp;WAS_HOME/bin/restoreConfig.sh:运行恢复脚本restoreConfig.sh+备份压缩包名，恢复当前的概要。<br>&emsp;&emsp;WAS_HOME/bin/startServer.sh:startServer.sh +服务器名，启动服务。<br>&emsp;&emsp;WAS_HOME/bin/stopServer.sh:stopServer.sh +服务器名，停止服务。<br>&emsp;&emsp;WAS_HOME/bin/serverstatus.sh:serverstatus.sh+服务期名，查看当前server状态信息。</p>
+<h3 id="三-创建stand-alone架构的WAS"><a href="#三-创建stand-alone架构的WAS" class="headerlink" title="三. 创建stand-alone架构的WAS"></a>三. 创建stand-alone架构的WAS</h3><h4 id="3-1、创建一个application-server的概要"><a href="#3-1、创建一个application-server的概要" class="headerlink" title="3.1、创建一个application server的概要"></a>3.1、创建一个application server的概要</h4><p>&emsp;&emsp;打开/opt/IBM/WebSphere/AppServer/bin/ProfileManagement,运行里面的脚本文件wct.sh，打开安装概要的工具PMT，点击create开始创建新的概要。</p>
+<p><img src="/images/2018-08-30_12_miho.png" alt="图片"></p>
+<p>然后点选application server，下一步</p>
+<p><img src="/images/2018-08-30_13_miho.png" alt="图片"></p>
+<p>选择高级概要创建，下一步</p>
+<p><img src="/images/2018-08-30_14_miho.png" alt="图片"></p>
+<p>这一步三个选项分别是部署admin console、部署默认的应用程序：包括snoop和一些servlet/EJB组件、部署IVT工具：IVT是包含解析servlet和JSP的工具，用以验证web container。三项默认全选，点选下一步。</p>
+<p><img src="/images/2018-08-30_15_miho.png" alt="图片"></p>
+<p>之后一直点下一步，一直到下面这个界面，设置节点名、服务名和主机名，可以自己设置，也可以默认，点选下一步。其中概要的根目录为/opt/IBM/WebSphere/AppServer/profiles/AppSrv01</p>
+<p><img src="/images/2018-08-30_16_miho.png" alt="图片"></p>
+<p>之后跳到管理安全性设置的界面，我们选中启用管理安全性，设置用户名和口令，点选下一步。</p>
+<p><img src="/images/2018-08-30_17_miho.png" alt="图片"></p>
+<p>之后一直点选next,直到创建完成。</p>
+<h4 id="3-2、启动服务器"><a href="#3-2、启动服务器" class="headerlink" title="3.2、启动服务器"></a>3.2、启动服务器</h4><p>&emsp;&emsp;可以去WAS根目录下的bin目录：/opt/IBM/WebSphere/AppServer/bin，然后./startServer.sh server1启动当前的服务；也可以去概要根目录下的bin目录：/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin,然后./startServer.sh server1启动当前的服务。之后ifconfig查看本机的IP地址。在另一台可以ping通这个ip地址的电脑浏览器上，地址栏输入<a href="http://ip地址:9060/ibm/console访问WAS的管理控制台，输入http://ip地址:9080/snoop访问WAS自带的应用程序snoop。" target="_blank" rel="noopener">http://ip地址:9060/ibm/console访问WAS的管理控制台，输入http://ip地址:9080/snoop访问WAS自带的应用程序snoop。</a></p>
+<p><img src="/images/2018-08-30_18_miho.png" alt="图片"></p>
+<p><img src="/images/2018-08-30_19_miho.png" alt="图片"></p>
+<h4 id="3-3、概要根目录的目录结构"><a href="#3-3、概要根目录的目录结构" class="headerlink" title="3.3、概要根目录的目录结构"></a>3.3、概要根目录的目录结构</h4><p>&emsp;&emsp;bin：与当前概要相关的脚本和命令；<br>&emsp;&emsp;config:保存的是当前概要的配置信息；<br>&emsp;&emsp;installedApps:保存的是当前概要所对应的WAS实例部署的所有的应用程序；<br>&emsp;&emsp;logs:当前概要所对应的WAS实例的日志信息；<br>&emsp;&emsp;logs/restoreConfig.log:创建概要时配置信息；<br>&emsp;&emsp;logs/server1/systemOut.log:Java程序所有调用输出流打印的内容，输出的消息从左至右分别为进程号、WAS中一个模块、消息的级别（I/E/F/A/W）、WAS的消息<br>&emsp;&emsp;tail -f SystemOut.log:用以跟踪这个日志文件的持续输出;<br>&emsp;&emsp;ps -ef | grep java:显示java进程。</p>
+<h3 id="四-创建IHS和plug-in"><a href="#四-创建IHS和plug-in" class="headerlink" title="四. 创建IHS和plug-in"></a>四. 创建IHS和plug-in</h3><h4 id="4-1、安装IHS、plug-in和WCT"><a href="#4-1、安装IHS、plug-in和WCT" class="headerlink" title="4.1、安装IHS、plug-in和WCT"></a>4.1、安装IHS、plug-in和WCT</h4><p>&emsp;&emsp;首先在Donwloads/目录下创建一个SUPPL文件夹，然后把最后三个压缩包移到SUPPL文件夹里，再全部解压缩。</p>
+<p><img src="/images/2018-08-30_9_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;然后去/opt/IBM/InstallationManager/eclipse运行脚本IBMIM打开IIM安装工具，新建repository，将这个repository指向SUPPL下的repository.config。之后退回安装主界面，点选安装。到下图之后分别勾选IHS、plug-in和WCT三项，点选next。</p>
+<p><img src="/images/2018-08-30_20_miho.png" alt="图片"></p>
+<p>之后一直next,一直到以下的界面，将WCT三个选项最后两个勾选去掉，然后一直next,直到finish。</p>
+<p><img src="/images/2018-08-30_21_miho.png" alt="图片"></p>
+<h4 id="4-2、配置plug-in"><a href="#4-2、配置plug-in" class="headerlink" title="4.2、配置plug-in"></a>4.2、配置plug-in</h4><p>&emsp;&emsp;在上一步完成IHS等的安装后，选择打开WCT工具。或者通过/opt/IBM/WebShpere/ToolBox/WCT/wct.sh脚本打开WCT工机具。点选add按钮</p>
+<p><img src="/images/2018-08-30_22_miho.png" alt="图片"></p>
+<p>然后填写name和location,点击finish。</p>
+<p><img src="/images/2018-08-30_23_miho.png" alt="图片"></p>
+<p>再选择下面的create，创建plug-in的配置，选择IBM HTTP Server V8.5,然后一直点下一步。</p>
+<p><img src="/images/2018-08-30_24_miho.png" alt="图片"></p>
+<p><img src="/images/2018-08-30_25_miho.png" alt="图片"></p>
+<p>到如下界面的时候，设置登录IHS管理控制台的用户名和口令，点选next</p>
+<p><img src="/images/2018-08-30_26_miho.png" alt="图片"></p>
+<p>然后一直next，直到出现如下界面，填写需要连接的WAS的主机名，因为我们之前的主机名是CentOS,所以在这里就写CnetOS，点下一步。然后点configure完成配置。</p>
+<p><img src="/images/2018-08-30_27_miho.png" alt="图片"></p>
+<h4 id="4-3、启动IHS"><a href="#4-3、启动IHS" class="headerlink" title="4.3、启动IHS"></a>4.3、启动IHS</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IHS安装根目录：/opt/IBM/HttpServer</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;去到IHS安装根目录/bin，使用命令./apachectl start打开IHS服务，用ps -ef | grep httpd检查是否启动IHS;在IHS安装根目录/bin,使用命令./adminctl start打开管理服务 ,用ps -ef | grep java检查是否启动管理服务器。然后还需要在WAS管理控制台中启动IHS和plug-in。之后就可以通过不加端口的形式访问到WAS下的应用程序了。</p>
+<p><img src="/images/2018-08-30_28_miho.png" alt="图片"></p>
+<h3 id="五-创建ND架构的WAS"><a href="#五-创建ND架构的WAS" class="headerlink" title="五. 创建ND架构的WAS"></a>五. 创建ND架构的WAS</h3><h4 id="5-1、创建部署管理器概要"><a href="#5-1、创建部署管理器概要" class="headerlink" title="5.1、创建部署管理器概要"></a>5.1、创建部署管理器概要</h4><p>&emsp;&emsp;打开/opt/IBM/WebSphere/AppServer/bin/ProfileManagement,运行里面的脚本文件wct.sh，打开安装概要的工具PMT，首先创建部署管理器的概要。点击create按钮创建新的概要，然后点选management按钮创建管理的概要。在WAS中，有三个用于管理的管理概要，分别是administrative agent和部署管理器和job manager，我们选择Deployment manager。然后点击下一步。</p>
+<p><img src="/images/2018-08-30_29_miho.png" alt="图片"></p>
+<p>还是选择高级概要创建选项。点击下一步。</p>
+<p><img src="/images/2018-08-30_30_miho.png" alt="图片"></p>
+<p>一直下一步，直到出现管理安全性的界面，还是设置我们自己的用户名和口令，用以登录部署管理器的管理控制台。然后点击下一步。</p>
+<p><img src="/images/2018-08-30_31_miho.png" alt="图片"></p>
+<p>一直点击下一步，直到create，然后finish。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">部署管理器根目录：/opt/IBM/WebSphere/AppServer/profiles/Dmgr01</span><br></pre></td></tr></table></figure></p>
+<h4 id="5-2、启动部署管理器"><a href="#5-2、启动部署管理器" class="headerlink" title="5.2、启动部署管理器"></a>5.2、启动部署管理器</h4><p>&emsp;&emsp;打开部署管理根目录/bin，输入命令./backupConfig.sh将当前bin下所有的配置都打包成一个.zip文件放在bin目录下；输入命令./startServer.sh启动部署管理器；输入命令./stopServer.sh停止部署管理器。</p>
+<h4 id="5-3、创建节点"><a href="#5-3、创建节点" class="headerlink" title="5.3、创建节点"></a>5.3、创建节点</h4><h5 id="5-3-1、直接联合stand-alone的WAS"><a href="#5-3-1、直接联合stand-alone的WAS" class="headerlink" title="5.3.1、直接联合stand-alone的WAS"></a>5.3.1、直接联合stand-alone的WAS</h5><p>&emsp;&emsp;将stand-alone架构下的WAS联合到部署管理器下，会自动生成节点代理器。首先需要保证WAS server处在运行的状态下（./startServer.sh server1）。打开部署管理器的管理控制台，左侧工具栏-System administrative-node,然后依次点击右侧内容页—add node—manager node–next</p>
+<p><img src="/images/2018-08-30_32_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;之后添加节点的基本信息，WAS server的主机名和ip地址；JMX connector type保持SOAP不变；JMX connector port保持8880不变；WAS server管理控制台的用户名和口令；部署管理器控制台的用户名和口令；config URL保持不变；<br>以及是否包含原来WAS server底下的应用，最后点选OK。</p>
+<p><img src="/images/2018-08-30_33_miho.png" alt="图片"></p>
+<p>添加节点成功。</p>
+<p><img src="/images/2018-08-30_34_miho.png" alt="图片"></p>
+<p>此时打开节点代理器的选项，可以看到自动创建的节点代理器已经在运行了。</p>
+<p><img src="/images/2018-08-30_35_miho.png" alt="图片"></p>
+<h5 id="5-3-2新建一个节点"><a href="#5-3-2新建一个节点" class="headerlink" title="5.3.2新建一个节点"></a>5.3.2新建一个节点</h5><p>&emsp;&emsp;打开/opt/IBM/WebSphere/AppServer/bin/ProfileManagement,运行里面的脚本文件wct.sh，打开安装概要的工具PMT，创建节点的概要，点选Custom profile，下一步。</p>
+<p><img src="/images/2018-08-30_36_miho.png" alt="图片"></p>
+<p>节点代理器的默认名和存放路径</p>
+<p><img src="/images/2018-08-30_37_miho.png" alt="图片"></p>
+<p>节点管理器设置用户名和口令，默认的端口号是8879，节点代理器没有管理控制台的概念</p>
+<p><img src="/images/2018-08-30_38_miho.png" alt="图片"></p>
+<p>完成后可以打开部署管理器的管理控制台，查看节点是否创建。</p>
+<p><img src="/images/2018-08-30_39_miho.png" alt="图片"></p>
+<p>也可以验查看这个节点代理器是否运行，如果没有运行可以通过节点根目录/bin/startNode.sh脚本命令启动这个节点代理器。</p>
+<p><img src="/images/2018-08-30_40_miho.png" alt="图片"></p>
+<h5 id="5-3-3、联合IHS和plug-in"><a href="#5-3-3、联合IHS和plug-in" class="headerlink" title="5.3.3、联合IHS和plug-in"></a>5.3.3、联合IHS和plug-in</h5><p>&emsp;&emsp;将IHS和plug-in联合到部署管理器下，首先要确保IHS和administrative Server启动，如果没有启动，可以通过如下命令启动。</p>
+<p><img src="/images/2018-08-30_41_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;打开部署管理器的管理控制台，左侧工具栏：system administrative-node，右侧内容页：add node-点选unmanaged node-next</p>
+<p><img src="/images/2018-08-30_42_miho.png" alt="图片"></p>
+<p>下一步配置主机名，所有操作完成后，需要点选save的选项保存设置</p>
+<p><img src="/images/2018-08-30_43_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;部署管理器下的配置文件与每个节点下的副本配置文件会定期同步，保持配置文件的一致，状态上绿色表示同步，红色表示未同步。</p>
+<p><img src="/images/2018-08-30_44_miho.png" alt="图片"></p>
+<p>可以勾选新增的节点名，点选工具栏上的同步选项，使主配置文件与副本配置文件保持同步</p>
+<p><img src="/images/2018-08-30_45_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;当把IHS联合到部署管理器下之后，还需要为新联合的IHS创建一个server，点选Server–Server Types–Web Servers–(右侧)New，所有操作完成后，需要点选save的选项保存设置</p>
+<p><img src="/images/2018-08-30_46_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;此时可以在部署管理器的管理控制台上远程启动、关闭和查看IHS和plug-in的日志。如果用命令查看plug-in配置文件的话，需要进入目录/opt/IBM/WebSphere/Plugins/config/webserver1，打开Plugin-cfg.xml文件。</p>
+<p><img src="/images/2018-08-30_47_miho.png" alt="图片"></p>
+<h4 id="5-4、创建集群"><a href="#5-4、创建集群" class="headerlink" title="5.4、创建集群"></a>5.4、创建集群</h4><p>&emsp;&emsp;为了实现HA（高可用性，每个节点上的server上都安装同样的app，当一个节点上的服务器出现问题之后，其他的server中的app可以无缝地立马代替工作。）而创建集群。将多个server创建成一个集群，那么配置数据源、指定目标主机的时候都是以集群为单位，而不是单个的server；只有集群内的server才可以实现无缝的故障恢复。例如：session对象，可以通过在集群里创建复制组来实现所有server里都存在相同的session对象。<br>&emsp;&emsp;创建集群首先要确保部署管理器与节点代理器是运行的，然后打开部署管理器的控制台，右侧工具栏：server-clusters-WebSphere application server clusters,点选右侧的new按钮。</p>
+<p><img src="/images/2018-08-30_48_miho.png" alt="图片"></p>
+<p>给集群命名，选择哪个server作为集群的第一成员</p>
+<p><img src="/images/2018-08-30_49_miho.png" alt="图片"></p>
+<p>为集群添加新的成员。</p>
+<p><img src="/images/2018-08-30_50_miho.png" alt="图片"></p>
+<p>点选finish按钮</p>
+<p><img src="/images/2018-08-30_51_miho.png" alt="图片"></p>
+<p>点选save保存配置</p>
+<p><img src="/images/2018-08-30_52_miho.png" alt="图片"></p>
+<p>查看default host的端口号中是否存在所有server中app访问的端口，没有端口的要添加对应的端口。</p>
+<p><img src="/images/2018-08-30_53_miho.png" alt="图片"></p>
+<p>以集群为单位创建数据源</p>
+<p><img src="/images/2018-08-30_54_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;通过IHS访问集群上的app,通过截图可以看到，第一次访问的是server1，第二次访问的是server2，原因就是集群通过策略将同一个请求分发到不同的应用服务器上。</p>
+<p><img src="/images/2018-08-30_55_miho.png" alt="图片"></p>
+<p><img src="/images/2018-08-30_56_miho.png" alt="图片"></p>
+<p>创建复制组，并将server加到复制组里，使得复制组里所有的server的状态都可以同步</p>
+<p><img src="/images/2018-08-30_57_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;在server中设置需要通过复制组进行保存的数据：server—容器设置–会话管理-分布式环境设置–内存到内存的设置-选择复制域-OK-保存；server—容器设置–EJB容器设置-EJB设置–内存到内存的设置-选择复制域-OK-保存</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年08月31日 14:43</p>
+        <p>原始链接： <a class="post-url" href="/2018/08/31/3_WAS基本概念与相关配置_2018-08-30/" title="WAS基本概念与相关配置">http://www.yeguangjie.xyz/2018/08/31/3_WAS基本概念与相关配置_2018-08-30/</a></p>
+        <footer>
+            <a href="http://www.yeguangjie.xyz">
+                <img src="/images/logo.png" alt="Ye GuangJie">
+                Ye GuangJie
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.yeguangjie.xyz/2018/08/31/3_WAS基本概念与相关配置_2018-08-30/&title=《WAS基本概念与相关配置》 — YGJ的博客&pic=/images/2018-08-30_1_miho.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.yeguangjie.xyz/2018/08/31/3_WAS基本概念与相关配置_2018-08-30/&title=《WAS基本概念与相关配置》 — YGJ的博客&source=希望我的分享可以帮助到你" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.yeguangjie.xyz/2018/08/31/3_WAS基本概念与相关配置_2018-08-30/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《WAS基本概念与相关配置》 — YGJ的博客&url=http://www.yeguangjie.xyz/2018/08/31/3_WAS基本概念与相关配置_2018-08-30/&via=http://www.yeguangjie.xyz" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.yeguangjie.xyz/2018/08/31/3_WAS基本概念与相关配置_2018-08-30/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://www.yeguangjie.xyz/2018/08/31/3_WAS基本概念与相关配置_2018-08-30/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/WebSphereApplicationServer/" class="color4">WebSphere Application Server</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一-简介"><span class="post-toc-text">一. 简介</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1、stand-alone架构"><span class="post-toc-text">1.1、stand-alone架构</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2、ND架构"><span class="post-toc-text">1.2、ND架构</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-3、组件IHS和plug-in"><span class="post-toc-text">1.3、组件IHS和plug-in</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-3-1、两台IHS和plug-in"><span class="post-toc-text">1.3.1、两台IHS和plug-in</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-3-2、IHS和plug-in不在cell-单元-管理下"><span class="post-toc-text">1.3.2、IHS和plug-in不在cell(单元)管理下</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-3-3、IHS和plug-in在cell-单元-管理下，通过节点代理器管理"><span class="post-toc-text">1.3.3、IHS和plug-in在cell(单元)管理下，通过节点代理器管理</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-3-4、IHS和plug-in不在cell-单元-管理下-通过IHS管理进程管理"><span class="post-toc-text">1.3.4、IHS和plug-in不在cell(单元)管理下,通过IHS管理进程管理</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-3-5、WAS灵活管理"><span class="post-toc-text">1.3.5、WAS灵活管理</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二-WAS的安装"><span class="post-toc-text">二. WAS的安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-1、安装IIM"><span class="post-toc-text">2.1、安装IIM</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2、安装WAS"><span class="post-toc-text">2.2、安装WAS</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三-创建stand-alone架构的WAS"><span class="post-toc-text">三. 创建stand-alone架构的WAS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-1、创建一个application-server的概要"><span class="post-toc-text">3.1、创建一个application server的概要</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-2、启动服务器"><span class="post-toc-text">3.2、启动服务器</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-3、概要根目录的目录结构"><span class="post-toc-text">3.3、概要根目录的目录结构</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四-创建IHS和plug-in"><span class="post-toc-text">四. 创建IHS和plug-in</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-1、安装IHS、plug-in和WCT"><span class="post-toc-text">4.1、安装IHS、plug-in和WCT</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-2、配置plug-in"><span class="post-toc-text">4.2、配置plug-in</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-3、启动IHS"><span class="post-toc-text">4.3、启动IHS</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五-创建ND架构的WAS"><span class="post-toc-text">五. 创建ND架构的WAS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-1、创建部署管理器概要"><span class="post-toc-text">5.1、创建部署管理器概要</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-2、启动部署管理器"><span class="post-toc-text">5.2、启动部署管理器</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-3、创建节点"><span class="post-toc-text">5.3、创建节点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-3-1、直接联合stand-alone的WAS"><span class="post-toc-text">5.3.1、直接联合stand-alone的WAS</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-3-2新建一个节点"><span class="post-toc-text">5.3.2新建一个节点</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-3-3、联合IHS和plug-in"><span class="post-toc-text">5.3.3、联合IHS和plug-in</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-4、创建集群"><span class="post-toc-text">5.4、创建集群</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/20/2-eclipsese中outline视图图标详解-2017-11-20/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">eclipse中outline视图中 图标总结</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 Ye GuangJie<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://www.yeguangjie.xyz",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/IDE/">IDE</a><a class="category-link" href="/categories/应用服务器/">应用服务器</a><a class="category-link" href="/categories/非技术分享/">非技术分享</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/WebSphere-Application-Server/" style="font-size: 10px;">WebSphere Application Server</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>首页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>档案</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/WebSphere-Application-Server/" style="font-size: 10px;">WebSphere Application Server</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>
