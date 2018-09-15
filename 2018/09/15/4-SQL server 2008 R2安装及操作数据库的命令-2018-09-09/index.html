@@ -12,7 +12,7 @@
 <meta name="keywords" content="SQL server 2008 R2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL server 2008 R2安装及操作数据库的命令">
-<meta property="og:url" content="http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/index.html">
+<meta property="og:url" content="http://www.yeguangjie.xyz/2018/09/15/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/index.html">
 <meta property="og:site_name" content="YGJ的博客">
 <meta property="og:description" content="一、安装SQL server 2008 R2&amp;emsp;&amp;emsp;我这次安装SQL server 2008 R2 是基于window server 2008，所以我们首先要在虚拟机上安装window server 2008系统。注意安装SQL server 2008 R2之前需要安装Microsoft .net framework 3.5组件。在产品密钥这个选项，我安装的这个版本自带密钥的安装，">
 <meta property="og:locale" content="default">
@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_12_miho.png">
 <meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_14_miho.png">
 <meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_15_miho.png">
-<meta property="og:updated_time" content="2018-09-15T07:14:20.031Z">
+<meta property="og:updated_time" content="2018-09-15T07:42:50.280Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL server 2008 R2安装及操作数据库的命令">
 <meta name="twitter:description" content="一、安装SQL server 2008 R2&amp;emsp;&amp;emsp;我这次安装SQL server 2008 R2 是基于window server 2008，所以我们首先要在虚拟机上安装window server 2008系统。注意安装SQL server 2008 R2之前需要安装Microsoft .net framework 3.5组件。在产品密钥这个选项，我安装的这个版本自带密钥的安装，">
@@ -143,7 +143,7 @@
               </li>
           
         <li>
-          <i class="fa fa-calendar"></i>  2018-09-09
+          <i class="fa fa-calendar"></i>  2018-09-15
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -241,39 +241,14 @@
 <p><img src="/images/2018-09-09_11_miho.png" alt="图片"></p>
 <p>在跳出的窗口选择权限，然后点击搜索，输入用户名，然后就可以指定这个用户对这个数据表的操作权限了。</p>
 <p><img src="/images/2018-09-09_12_miho.png" alt="图片"></p>
-<h3 id="四、数据库的备份与还原"><a href="#四、数据库的备份与还原" class="headerlink" title="四、数据库的备份与还原"></a>四、数据库的备份与还原</h3><h4 id="4-1-图形化界面操作"><a href="#4-1-图形化界面操作" class="headerlink" title="4.1 图形化界面操作"></a>4.1 图形化界面操作</h4><p>&emsp;&emsp;如下图，选择备份类型的时候有三种类型：完整备份即是对所有数据库都全备份一次；差异备份只备份自上一次完整备份后增加的内容；事务日志备份是对上一次全备份+事务日志备份之后增加的内容备份。备份的路径默认是C:\Program Files\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQL\Backup。当我们要还原的时候，就右击数据库-任务-还原-文件和文件组，然后选择对应的备份集点击确定就可以了。</p>
+<h3 id="四、数据库的备份与还原"><a href="#四、数据库的备份与还原" class="headerlink" title="四、数据库的备份与还原"></a>四、数据库的备份与还原</h3><h4 id="4-1、图形化界面操作"><a href="#4-1、图形化界面操作" class="headerlink" title="4.1、图形化界面操作"></a>4.1、图形化界面操作</h4><p>&emsp;&emsp;如下图，选择备份类型的时候有三种类型：完整备份即是对所有数据库都全备份一次；差异备份只备份自上一次完整备份后增加的内容；事务日志备份是对上一次全备份+事务日志备份之后增加的内容备份。备份的路径默认是C:\Program Files\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQL\Backup。当我们要还原的时候，就右击数据库-任务-还原-文件和文件组，然后选择对应的备份集点击确定就可以了。</p>
 <p><img src="/images/2018-09-09_14_miho.png" alt="图片"></p>
 <p><img src="/images/2018-09-09_15_miho.png" alt="图片"></p>
-<h4 id="4-2、命令行"><a href="#4-2、命令行" class="headerlink" title="4.2、命令行"></a>4.2、命令行</h4><pre><code class="bash">--为了以后的方便，我们可以先指定备份的设备（备份设备在服务器对象-备份设备里可以找到），备份设备绑定了物理地址。
-Exec sp_addumpdevice <span class="string">'disk'</span>,<span class="string">'备份设备名'</span>,<span class="string">'备份文件存放的绝对路径'</span>
-
---- 完整备份 ---
-backup database [数据库名] to [备份设备名] with init
---- 完整备份还原 ---
---recovery表示此次还原是最后一次还原,如果是norecovery则表示接下来还有还原操作
-restore database [数据库名] from [备份设备名] with file=1,recovery
-
---- 差异备份 ---
-backup database [数据库名] to [备份设备名] with differential,noinit
---- 差异备份还原 ---
---先还原最近的一次完整备份数据
-restore database [数据库名] from [备份设备名] with file=1,norecovery
---再还原最近一次的差异备份数据
-restore database [数据库名] from [备份设备名] with file=2,recovery
-
---- 事务日志备份 ----
-backup <span class="built_in">log</span> [数据库名] to [备份设备名]
---- 事务日志备份还原 ---
---先还原最近的一次完整备份数据
-restore database [数据库名] from [备份设备名] with file=1,norecovery
---再还原最近一次的差异备份数据,stopat表示把数据还原到这一时间点前
-restore database [数据库名] from [备份设备名] with file=2,stopat=<span class="string">'2018-09-06 11:00:00'</span>,recovery
-</code></pre>
-
+<h4 id="4-2、命令行"><a href="#4-2、命令行" class="headerlink" title="4.2、命令行"></a>4.2、命令行</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">--为了以后的方便，我们可以先指定备份的设备（备份设备在服务器对象-备份设备里可以找到），备份设备绑定了物理地址。</span><br><span class="line">Exec sp_addumpdevice <span class="string">'disk'</span>,<span class="string">'备份设备名'</span>,<span class="string">'备份文件存放的绝对路径'</span></span><br><span class="line"></span><br><span class="line">--- 完整备份 ---</span><br><span class="line">backup database [数据库名] to [备份设备名] with init</span><br><span class="line">--- 完整备份还原 ---</span><br><span class="line">--recovery表示此次还原是最后一次还原,如果是norecovery则表示接下来还有还原操作</span><br><span class="line">restore database [数据库名] from [备份设备名] with file=1,recovery</span><br><span class="line"></span><br><span class="line">--- 差异备份 ---</span><br><span class="line">backup database [数据库名] to [备份设备名] with differential,noinit</span><br><span class="line">--- 差异备份还原 ---</span><br><span class="line">--先还原最近的一次完整备份数据</span><br><span class="line">restore database [数据库名] from [备份设备名] with file=1,norecovery</span><br><span class="line">--再还原最近一次的差异备份数据</span><br><span class="line">restore database [数据库名] from [备份设备名] with file=2,recovery</span><br><span class="line"></span><br><span class="line">--- 事务日志备份 ----</span><br><span class="line">backup <span class="built_in">log</span> [数据库名] to [备份设备名]</span><br><span class="line">--- 事务日志备份还原 ---</span><br><span class="line">--先还原最近的一次完整备份数据</span><br><span class="line">restore database [数据库名] from [备份设备名] with file=1,norecovery</span><br><span class="line">--再还原最近一次的差异备份数据,stopat表示把数据还原到这一时间点前</span><br><span class="line">restore database [数据库名] from [备份设备名] with file=2,stopat=<span class="string">'2018-09-06 11:00:00'</span>,recovery</span><br></pre></td></tr></table></figure>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年09月15日 15:14</p>
-        <p>原始链接： <a class="post-url" href="/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/" title="SQL server 2008 R2安装及操作数据库的命令">http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/</a></p>
+        <p>最后更新： 2018年09月15日 15:42</p>
+        <p>原始链接： <a class="post-url" href="/2018/09/15/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/" title="SQL server 2008 R2安装及操作数据库的命令">http://www.yeguangjie.xyz/2018/09/15/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/</a></p>
         <footer>
             <a href="http://www.yeguangjie.xyz">
                 <img src="/images/logo.png" alt="Ye GuangJie">
@@ -295,7 +270,7 @@ restore database [数据库名] from [备份设备名] with file=2,stopat=<span 
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/&title=《SQL server 2008 R2安装及操作数据库的命令》 — YGJ的博客&pic=/images/2018-09-09_1_miho.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.yeguangjie.xyz/2018/09/15/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/&title=《SQL server 2008 R2安装及操作数据库的命令》 — YGJ的博客&pic=/images/2018-09-09_1_miho.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -305,22 +280,22 @@ restore database [数据库名] from [备份设备名] with file=2,stopat=<span 
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/&title=《SQL server 2008 R2安装及操作数据库的命令》 — YGJ的博客&source=希望我的分享可以帮助到你" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.yeguangjie.xyz/2018/09/15/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/&title=《SQL server 2008 R2安装及操作数据库的命令》 — YGJ的博客&source=希望我的分享可以帮助到你" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.yeguangjie.xyz/2018/09/15/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SQL server 2008 R2安装及操作数据库的命令》 — YGJ的博客&url=http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/&via=http://www.yeguangjie.xyz" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SQL server 2008 R2安装及操作数据库的命令》 — YGJ的博客&url=http://www.yeguangjie.xyz/2018/09/15/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/&via=http://www.yeguangjie.xyz" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.yeguangjie.xyz/2018/09/15/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -330,7 +305,7 @@ restore database [数据库名] from [备份设备名] with file=2,stopat=<span 
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://www.yeguangjie.xyz/2018/09/15/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -355,26 +330,16 @@ restore database [数据库名] from [备份设备名] with file=2,stopat=<span 
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、安装SQL-server-2008-R2"><span class="post-toc-text">一、安装SQL server 2008 R2</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、数据库的相关命令"><span class="post-toc-text">二、数据库的相关命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-1、关系模型"><span class="post-toc-text">2.1、关系模型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2、创建数据库、数据表"><span class="post-toc-text">2.2、创建数据库、数据表</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-3、增删改"><span class="post-toc-text">2.3、增删改</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-4、查询数据"><span class="post-toc-text">2.4、查询数据</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、sql-server新建用户"><span class="post-toc-text">三、sql server新建用户</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-1、sql-server新建用户"><span class="post-toc-text">3.1、sql server新建用户</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-2、给新建用户赋数据库权限"><span class="post-toc-text">3.2、给新建用户赋数据库权限</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-3、给新建用户赋数据表权限"><span class="post-toc-text">3.3、给新建用户赋数据表权限</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、数据库的备份与还原"><span class="post-toc-text">四、数据库的备份与还原</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-1-图形化界面操作"><span class="post-toc-text">4.1 图形化界面操作</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-2、命令行"><span class="post-toc-text">4.2、命令行</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、安装SQL-server-2008-R2"><span class="post-toc-text">一、安装SQL server 2008 R2</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、数据库的相关命令"><span class="post-toc-text">二、数据库的相关命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-1、关系模型"><span class="post-toc-text">2.1、关系模型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2、创建数据库、数据表"><span class="post-toc-text">2.2、创建数据库、数据表</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-3、增删改"><span class="post-toc-text">2.3、增删改</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-4、查询数据"><span class="post-toc-text">2.4、查询数据</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、sql-server新建用户"><span class="post-toc-text">三、sql server新建用户</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-1、sql-server新建用户"><span class="post-toc-text">3.1、sql server新建用户</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-2、给新建用户赋数据库权限"><span class="post-toc-text">3.2、给新建用户赋数据库权限</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-3、给新建用户赋数据表权限"><span class="post-toc-text">3.3、给新建用户赋数据表权限</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、数据库的备份与还原"><span class="post-toc-text">四、数据库的备份与还原</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-1、图形化界面操作"><span class="post-toc-text">4.1、图形化界面操作</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-2、命令行"><span class="post-toc-text">4.2、命令行</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
   
-    <a href="/2018/09/09/the-资源分享-2018-09-09/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          资源分享
-        
-      </span>
-    </a>
   
-  
-    <a href="/2018/08/31/3_WAS基本概念与相关配置_2018-08-30/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">WAS基本概念与相关配置</span>
+    <a href="/2018/09/09/the-资源分享-2018-09-09/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">资源分享</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
@@ -438,7 +403,7 @@ restore database [数据库名] from [备份设备名] with file=2,stopat=<span 
             <a class="category-link" href="/categories/IDE/">IDE</a><a class="category-link" href="/categories/应用服务器/">应用服务器</a><a class="category-link" href="/categories/数据库/">数据库</a><a class="category-link" href="/categories/资源分享/">资源分享</a><a class="category-link" href="/categories/非技术分享/">非技术分享</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Oracle-11g/" style="font-size: 10px;">Oracle 11g</a> <a href="/tags/SQL-server-2008-R2/" style="font-size: 10px;">SQL server 2008 R2</a> <a href="/tags/WebSphere-Application-Server/" style="font-size: 10px;">WebSphere Application Server</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/资源分享/" style="font-size: 10px;">资源分享</a>
+            <a href="/tags/SQL-server-2008-R2/" style="font-size: 10px;">SQL server 2008 R2</a> <a href="/tags/WebSphere-Application-Server/" style="font-size: 10px;">WebSphere Application Server</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/资源分享/" style="font-size: 10px;">资源分享</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -471,7 +436,7 @@ restore database [数据库名] from [备份设备名] with file=2,stopat=<span 
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Oracle-11g/" style="font-size: 10px;">Oracle 11g</a> <a href="/tags/SQL-server-2008-R2/" style="font-size: 10px;">SQL server 2008 R2</a> <a href="/tags/WebSphere-Application-Server/" style="font-size: 10px;">WebSphere Application Server</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/资源分享/" style="font-size: 10px;">资源分享</a>
+            <a href="/tags/SQL-server-2008-R2/" style="font-size: 10px;">SQL server 2008 R2</a> <a href="/tags/WebSphere-Application-Server/" style="font-size: 10px;">WebSphere Application Server</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/资源分享/" style="font-size: 10px;">资源分享</a>
         </div>
     </div>
 </div>
