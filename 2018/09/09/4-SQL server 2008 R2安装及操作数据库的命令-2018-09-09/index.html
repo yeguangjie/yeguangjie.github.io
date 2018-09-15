@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SQL server 2008 R2安装及操作数据库的命令 | YGJ的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="yeguangjie,yeguangjie's Blog" />
+  
+  <meta name="description" content="一、安装SQL server 2008 R2&amp;emsp;&amp;emsp;我这次安装SQL server 2008 R2 是基于window server 2008，所以我们首先要在虚拟机上安装window server 2008系统。注意安装SQL server 2008 R2之前需要安装Microsoft .net framework 3.5组件。在产品密钥这个选项，我安装的这个版本自带密钥的安装，">
+<meta name="keywords" content="SQL server 2008 R2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL server 2008 R2安装及操作数据库的命令">
+<meta property="og:url" content="http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/index.html">
+<meta property="og:site_name" content="YGJ的博客">
+<meta property="og:description" content="一、安装SQL server 2008 R2&amp;emsp;&amp;emsp;我这次安装SQL server 2008 R2 是基于window server 2008，所以我们首先要在虚拟机上安装window server 2008系统。注意安装SQL server 2008 R2之前需要安装Microsoft .net framework 3.5组件。在产品密钥这个选项，我安装的这个版本自带密钥的安装，">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_1_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_2_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_3_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_4_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_5_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_13_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_6_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_7_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_8_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_9_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_10_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_11_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_12_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_14_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2018-09-09_15_miho.png">
+<meta property="og:updated_time" content="2018-09-15T07:14:20.031Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL server 2008 R2安装及操作数据库的命令">
+<meta name="twitter:description" content="一、安装SQL server 2008 R2&amp;emsp;&amp;emsp;我这次安装SQL server 2008 R2 是基于window server 2008，所以我们首先要在虚拟机上安装window server 2008系统。注意安装SQL server 2008 R2之前需要安装Microsoft .net framework 3.5组件。在产品密钥这个选项，我安装的这个版本自带密钥的安装，">
+<meta name="twitter:image" content="http://www.yeguangjie.xyz/images/2018-09-09_1_miho.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">YeGuangJie&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>首页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>档案</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        YeGuangJie&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        分享我的知识与见解，希望可以帮到你
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="YGJ" target="_blank" href="//yeguangjie.github.io">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/yeguangjie">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="扫一扫加我QQ好友" target="_blank" href="/images/qq.jpg">
+                            <i class="fa fa-qq fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      SQL server 2008 R2安装及操作数据库的命令
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/数据库/">数据库</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-09-09
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、安装SQL-server-2008-R2"><a href="#一、安装SQL-server-2008-R2" class="headerlink" title="一、安装SQL server 2008 R2"></a>一、安装SQL server 2008 R2</h3><p>&emsp;&emsp;我这次安装SQL server 2008 R2 是基于window server 2008，所以我们首先要在虚拟机上安装window server 2008系统。注意安装SQL server 2008 R2之前需要安装Microsoft .net framework 3.5组件。在产品密钥这个选项，我安装的这个版本自带密钥的安装，产品密钥是GYF3T-H2V88-GRPPH-HWRJP-QRTYB。安装引导界面几乎都是默认下一步，不过在功能选择这一项的时候需要选中数据库引擎服务和管理工具。注意：一台设备可以安装多个数据库引擎服务，但是只能安装一次管理工具。</p>
+<p><img src="/images/2018-09-09_1_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;在实例配置这个选项可以选择默认实例或者自己命名实例。注意：每新建一个实例都相当于重新在本地新建一个服务，我们可以在每个实例下都新建多个数据库，每个数据库下也可以新建多个数据表。当我们选择默认实例后，完成后本地服务上(运行窗口键入services.msc查看当前设备的所有服务信息)就会有一个名为sql server(MSSQLSERVER)的服务启动；当我们新建一个test的实例时，完成后本地服务上就会多出一个名为sql server(TEST)的服务。</p>
+<p><img src="/images/2018-09-09_2_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;在服务器配置选项中的服务账户下的代理和database engine中选择这一项NT AUTHORITY\NETWORK SERVICE，然后下一步。</p>
+<p><img src="/images/2018-09-09_3_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;在数据库引擎配置页面中的账户设置下，需要设置数据库的身份验证模式、sa用户的密码和sql server 管理员。之后一直默认下一步，直到完成安装。</p>
+<p><img src="/images/2018-09-09_4_miho.png" alt="图片"></p>
+<h3 id="二、数据库的相关命令"><a href="#二、数据库的相关命令" class="headerlink" title="二、数据库的相关命令"></a>二、数据库的相关命令</h3><h4 id="2-1、关系模型"><a href="#2-1、关系模型" class="headerlink" title="2.1、关系模型"></a>2.1、关系模型</h4><p><img src="/images/2018-09-09_5_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;关系：一个关系对应通常说的一张表，如上图的这张学生信息表；<br>&emsp;&emsp;元组：表中的一行即为一个元组；<br>&emsp;&emsp;属性：表中的一列即为一个属性，属性的名即为属性名；<br>&emsp;&emsp;码：也称为码键，可以唯一确定一个元组，如上图中的学号就是本关系的码；<br>&emsp;&emsp;域：域是一组具有相同数据类型的值的集合，属性的取值范围来自某个域，如人的年龄在1~120之间；<br>&emsp;&emsp;分量：元组中的一个属性值。<br>&emsp;&emsp;关系模型中有三种完整性约束：实体完整性、参照完整性和用户定义的完整性。简而言之，实体完整性就是要保证主键不能为空，且主属性的每个值唯一；参照完整性就是当两个关系存在属性的引用，其中一个关系的非主属性引用了另一个关系的主属性，那么这个关系的非主属性的值就得参照另一个关系的主属性的值取值；用户定义的完整性就是用户自己设定的约束。</p>
+<h4 id="2-2、创建数据库、数据表"><a href="#2-2、创建数据库、数据表" class="headerlink" title="2.2、创建数据库、数据表"></a>2.2、创建数据库、数据表</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">--创建数据库</span><br><span class="line">Create database LibraryDB</span><br><span class="line">--创建数据表</span><br><span class="line">Create table student</span><br><span class="line">(</span><br><span class="line">	SNO int primary key,</span><br><span class="line">	Sname varchar(15),</span><br><span class="line">	Sage char(2),</span><br><span class="line">	Smobile char(11),</span><br><span class="line">	Saddress varchar(50),</span><br><span class="line">	Semail varchar(100),</span><br><span class="line">)</span><br><span class="line">Create table student</span><br><span class="line">(</span><br><span class="line">	SNO int,</span><br><span class="line">	Sname varchar(15),</span><br><span class="line">	Sage char(2),</span><br><span class="line">	Smobile char(11),</span><br><span class="line">	Saddress varchar(50),</span><br><span class="line">	Semail varchar(100),</span><br><span class="line">	constraint PK_SNO primary key clustered(SNO),</span><br><span class="line">)</span><br><span class="line">--创建复合主键</span><br><span class="line">Create table student</span><br><span class="line">(</span><br><span class="line">	SNO int,</span><br><span class="line">	Sname varchar(15),</span><br><span class="line">	Sage char(2),</span><br><span class="line">	Smobile char(11),</span><br><span class="line">	Saddress varchar(50),</span><br><span class="line">	Semail varchar(100),</span><br><span class="line">	constraint PK_SNO primary key clustered(SNO,Sname),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>在数据表创建的时候，可以给列增加约束性条件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">--创建数据表，增加约束性条件</span><br><span class="line">Create table student</span><br><span class="line">(</span><br><span class="line">	SNO int,</span><br><span class="line">	Sname varchar(15) not null,</span><br><span class="line">	Sage char(2),</span><br><span class="line">	Smobile char(11),</span><br><span class="line">	Saddress varchar(50),</span><br><span class="line">	Semail varchar(100),</span><br><span class="line">	constraint PK_SNO primary key clustered(SNO),</span><br><span class="line">	constraint UN_MB unique NONClustered(Smobile),</span><br><span class="line">	constraint CH_MB check(mobile like <span class="string">'[1][3-9][0-9]&#123;10&#125;'</span>),</span><br><span class="line">	constraint CH_EMAIL check(Semail like <span class="string">'_%[@]_%[.]_%'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>在数据表创建的时候，可以给列设定自动编号和默认值。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">--创建数据表，设定列自动编号和默认值</span><br><span class="line">Create table student</span><br><span class="line">(</span><br><span class="line">	SNO int identity(95001,1),</span><br><span class="line">	Sage char(2) default <span class="string">'男'</span>,</span><br><span class="line">	constraint PK_SNO primary key clustered(SNO),</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>在数据表创建的时候，指定外键。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">--创建数据表，设定列自动编号和默认值</span><br><span class="line">Create table BorrowBook</span><br><span class="line">(</span><br><span class="line">	SNO int,</span><br><span class="line">	BookId int</span><br><span class="line">	Sage char(2),</span><br><span class="line">	constraint PK_SNO primary key clustered(SNO,BookId),</span><br><span class="line">	constraint FK_SNO foreign key(SNO) references student(SNO),</span><br><span class="line">	constraint FK_BookId foreign key(BookId) references book(BookId),</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-3、增删改"><a href="#2-3、增删改" class="headerlink" title="2.3、增删改"></a>2.3、增删改</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">--假设现在有个表student</span><br><span class="line">--插入一条数据</span><br><span class="line">insert into student(SNO,Sname,Sage...) values(95001,<span class="string">'张三'</span>，13...)</span><br><span class="line">--改变一条记录</span><br><span class="line">update student <span class="built_in">set</span> Sname = <span class="string">'李四'</span> <span class="built_in">where</span> SNO = 95001</span><br><span class="line">--删除一条数据</span><br><span class="line">delete from student <span class="built_in">where</span> SNO=95001</span><br></pre></td></tr></table></figure>
+<h4 id="2-4、查询数据"><a href="#2-4、查询数据" class="headerlink" title="2.4、查询数据"></a>2.4、查询数据</h4><p>&emsp;&emsp;现在有以下六张表，分别是学生表student、图书表book、图书种类表booktype、作者信息表Author、借书表borrowbook、书籍出版信息表press</p>
+<p><img src="/images/2018-09-09_13_miho.png" alt="图片"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">--- 基础查询 ---</span><br><span class="line"></span><br><span class="line">--1、查询出姓名不是“陈鹏”的学生的所有信息</span><br><span class="line">Select SNO, SName, Sage, Sex, MobileNO, StuEMail from Student Where SName !=<span class="string">'陈鹏'</span> </span><br><span class="line">--或者 <span class="built_in">where</span> SName &lt;&gt; <span class="string">'陈鹏'</span></span><br><span class="line">--或者 Where SName Not In(<span class="string">'陈鹏'</span>)</span><br><span class="line"></span><br><span class="line">--2、查询出学生年龄介于20到30间的学生学号和姓名</span><br><span class="line">Select SNO,SName from Student Where Sage Between 20 and 30 </span><br><span class="line">--或者 <span class="built_in">where</span> Sage &gt;= 20 And Sage &lt;=30 </span><br><span class="line"></span><br><span class="line">--3、查询哪些学生没有填写“年龄”信息</span><br><span class="line">Select SNO,SName from Student Where Sage is Null </span><br><span class="line"></span><br><span class="line">--4、查询一共有多少学生借了书 Distinct 【消除重复项】</span><br><span class="line">Select Distinct SNo from BorrowBook</span><br><span class="line"></span><br><span class="line">--- Top 使用 ---</span><br><span class="line"></span><br><span class="line">--5、查询学生表的前三行</span><br><span class="line">Select Top 3 SNO, SName, Sage, Sex, MobileNO, StuEMail from Student</span><br><span class="line"></span><br><span class="line">--6、查询学生表的前30%行</span><br><span class="line">Select Top 30 percent SNO, SName, Sage, Sex, MobileNO, StuEMail from Student</span><br><span class="line"></span><br><span class="line">--- like及通配符 使用 ---</span><br><span class="line"></span><br><span class="line">--7、查询出手机号码134或者135开头，倒数第四位为不是5也不是6的学生姓名（Like）</span><br><span class="line">Select SName As <span class="string">'学生姓名'</span> from student <span class="built_in">where</span> MobileNO Like <span class="string">'[1][3][45]%[^56]___'</span></span><br><span class="line"></span><br><span class="line">--- order by、group by及排序使用 ---</span><br><span class="line"></span><br><span class="line">--8、查询学生表随机返回多少行</span><br><span class="line">Select Top 3 SNO, SName, Sage, Sex, MobileNO, StuEMail from Student order by NEWID()</span><br><span class="line"></span><br><span class="line">--9、统计出男女生的人数 </span><br><span class="line">Select Sex As <span class="string">'性别'</span>,count(*) As <span class="string">'人数'</span> from Student Group by Sex</span><br><span class="line"></span><br><span class="line">--10、对Student表按照年龄升序排序，如果年龄一样，女生排在男生前面 (order by)</span><br><span class="line">-- ASC【升序】  DESC【降序】 排序也可以嵌套</span><br><span class="line">Select SNO, SName, Sage, Sex, MobileNO, StuEMail from student order by Sage ASC , Sex DESC</span><br><span class="line"></span><br><span class="line">--- 聚合函数的使用SUM/AVG/MIN/MAX/COUNT ---</span><br><span class="line">--11、查询出男生的平均年龄</span><br><span class="line">Select avg(Sage) As <span class="string">'男生的平均年龄'</span> from student <span class="built_in">where</span> Sex = <span class="string">'男'</span></span><br><span class="line"></span><br><span class="line">--12、查询出有多少位学生借书</span><br><span class="line">Select Count(Distinct SNO) As <span class="string">'借书的学生数量'</span> from BorrowBook</span><br><span class="line"></span><br><span class="line">--- 嵌套查询、多表查询---</span><br><span class="line"></span><br><span class="line">--13、查询出借过书的同学的姓名 (distinct)</span><br><span class="line">Select SName As <span class="string">'借过书的学生姓名'</span> from student Where SNO <span class="keyword">in</span> </span><br><span class="line">(</span><br><span class="line">	Select Distinct SNO from BorrowBook</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">--14、查询出年龄最大的学生的学号和姓名  (max)</span><br><span class="line">Select SNo As <span class="string">'学号'</span>,SName AS <span class="string">'姓名'</span> from Student <span class="built_in">where</span> Sage = </span><br><span class="line">(	</span><br><span class="line">	Select Max(Sage) from Student</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">--15、查询出计算机类的图书总共有多少本</span><br><span class="line">Select Sum(BookSumNo) As <span class="string">'计算机类的图书数量'</span> from Book <span class="built_in">where</span> BookTypeID =</span><br><span class="line">(</span><br><span class="line">	Select BookTypeID From BookType Where TypeName = <span class="string">'计算机'</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">--16、统计出每一类书中的最高的价格 使用两张表：Book,BookType </span><br><span class="line">Select T2.TypeName AS <span class="string">'类别名称'</span>,T1.maxPrice As <span class="string">'最高价格'</span> from </span><br><span class="line">(</span><br><span class="line">	Select BookTypeId,MAX(BookPrice) As <span class="string">'maxPrice'</span> from Book Group by BookTypeID</span><br><span class="line">) As T1, BookType As T2 Where T1.BookTypeID = T2.ID</span><br><span class="line"> </span><br><span class="line">--17、查询出借的最多的书的名称</span><br><span class="line">Select BookName AS <span class="string">'借的最多的图书名称'</span> from Book <span class="built_in">where</span> BookId In</span><br><span class="line">(</span><br><span class="line">    --获得借的最多的书的图书编号</span><br><span class="line">	Select  BookId from BorrowBook Group by BookId</span><br><span class="line">	Having count(*) =</span><br><span class="line">	(   -- 获得借的最多的书的数量</span><br><span class="line">		Select  Top 1 count(*) from BorrowBook Group by BookId order by count(*) DESC</span><br><span class="line">	)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="三、sql-server新建用户"><a href="#三、sql-server新建用户" class="headerlink" title="三、sql server新建用户"></a>三、sql server新建用户</h3><h4 id="3-1、sql-server新建用户"><a href="#3-1、sql-server新建用户" class="headerlink" title="3.1、sql server新建用户"></a>3.1、sql server新建用户</h4><p>&emsp;&emsp;Sql server中有一个超级管理员SA，这个管理员拥有最高权限。当然我们可以新建新的用户，并给予新用户相应的权限。具体的操作步骤如下图：<br>(1)、首先点击安全性-登录名，然后右击选择新建登录名；</p>
+<p><img src="/images/2018-09-09_6_miho.png" alt="图片"></p>
+<p><img src="/images/2018-09-09_7_miho.png" alt="图片"></p>
+<p>(2)、然后注意下图红框中的填写就可以了；</p>
+<p><img src="/images/2018-09-09_8_miho.png" alt="图片"></p>
+<p>(3)、之后就可以通过新建的登录名连接数据库了；注意这里的服务器名称的填写方式，对于本地的sql server来说，我们可以写”.”、”localhost”、”127.0.0.1”以及本机的ip地址。</p>
+<p><img src="/images/2018-09-09_9_miho.png" alt="图片"></p>
+<h4 id="3-2、给新建用户赋数据库权限"><a href="#3-2、给新建用户赋数据库权限" class="headerlink" title="3.2、给新建用户赋数据库权限"></a>3.2、给新建用户赋数据库权限</h4><p>&emsp;&emsp;新建完用户，用户默认对任何数据库和数据表都没有操作权限，我们需要自己手动添加。打开登录名-属性，打开用户映射。我们可以指定用户可以对哪些数据库有哪些权限，如下图：</p>
+<p><img src="/images/2018-09-09_10_miho.png" alt="图片"></p>
+<p>这里十个数据库角色成员身份代表的含义是：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数据库角色成员身份名</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">db_accessadmin</td>
+<td style="text-align:center">可以为windows登录名、Windows组和SQL server登录名添加或删除数据库访问权限</td>
+</tr>
+<tr>
+<td style="text-align:center">db_backupoperator</td>
+<td style="text-align:center">可以备份数据库</td>
+</tr>
+<tr>
+<td style="text-align:center">db_datareader</td>
+<td style="text-align:center">可以从所有数据表中增删改数据</td>
+</tr>
+<tr>
+<td style="text-align:center">db_datawriter</td>
+<td style="text-align:center">可以从所有数据表中查询数据</td>
+</tr>
+<tr>
+<td style="text-align:center">db_ddladmin</td>
+<td style="text-align:center">可以在数据库中运行任何数据定义语言(DDL)</td>
+</tr>
+<tr>
+<td style="text-align:center">db_denydatareader</td>
+<td style="text-align:center">不能增删改数据库下的所有数据表的数据</td>
+</tr>
+<tr>
+<td style="text-align:center">db_denydatawriter</td>
+<td style="text-align:center">不能查询数据库下的所有数据表的数据</td>
+</tr>
+<tr>
+<td style="text-align:center">db_owner</td>
+<td style="text-align:center">最大权限，可以执行所有关于数据库以及数据表的操作，包括删除数据库</td>
+</tr>
+<tr>
+<td style="text-align:center">db_securityadmin</td>
+<td style="text-align:center">可以修改角色成员身份和管理权限</td>
+</tr>
+<tr>
+<td style="text-align:center">public</td>
+<td style="text-align:center">默认，什么权限都不分配</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-3、给新建用户赋数据表权限"><a href="#3-3、给新建用户赋数据表权限" class="headerlink" title="3.3、给新建用户赋数据表权限"></a>3.3、给新建用户赋数据表权限</h4><p>&emsp;&emsp;上面我们只是对数据库整体赋权限，权限对数据库下的所有数据表同时生效，但是如果我们想要对某个具体的数据库下的数据表赋权限，则需要打开数据库下面的数据表，右击打开属性：</p>
+<p><img src="/images/2018-09-09_11_miho.png" alt="图片"></p>
+<p>在跳出的窗口选择权限，然后点击搜索，输入用户名，然后就可以指定这个用户对这个数据表的操作权限了。</p>
+<p><img src="/images/2018-09-09_12_miho.png" alt="图片"></p>
+<h3 id="四、数据库的备份与还原"><a href="#四、数据库的备份与还原" class="headerlink" title="四、数据库的备份与还原"></a>四、数据库的备份与还原</h3><h4 id="4-1-图形化界面操作"><a href="#4-1-图形化界面操作" class="headerlink" title="4.1 图形化界面操作"></a>4.1 图形化界面操作</h4><p>&emsp;&emsp;如下图，选择备份类型的时候有三种类型：完整备份即是对所有数据库都全备份一次；差异备份只备份自上一次完整备份后增加的内容；事务日志备份是对上一次全备份+事务日志备份之后增加的内容备份。备份的路径默认是C:\Program Files\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQL\Backup。当我们要还原的时候，就右击数据库-任务-还原-文件和文件组，然后选择对应的备份集点击确定就可以了。</p>
+<p><img src="/images/2018-09-09_14_miho.png" alt="图片"></p>
+<p><img src="/images/2018-09-09_15_miho.png" alt="图片"></p>
+<h4 id="4-2、命令行"><a href="#4-2、命令行" class="headerlink" title="4.2、命令行"></a>4.2、命令行</h4><pre><code class="bash">--为了以后的方便，我们可以先指定备份的设备（备份设备在服务器对象-备份设备里可以找到），备份设备绑定了物理地址。
+Exec sp_addumpdevice <span class="string">'disk'</span>,<span class="string">'备份设备名'</span>,<span class="string">'备份文件存放的绝对路径'</span>
+
+--- 完整备份 ---
+backup database [数据库名] to [备份设备名] with init
+--- 完整备份还原 ---
+--recovery表示此次还原是最后一次还原,如果是norecovery则表示接下来还有还原操作
+restore database [数据库名] from [备份设备名] with file=1,recovery
+
+--- 差异备份 ---
+backup database [数据库名] to [备份设备名] with differential,noinit
+--- 差异备份还原 ---
+--先还原最近的一次完整备份数据
+restore database [数据库名] from [备份设备名] with file=1,norecovery
+--再还原最近一次的差异备份数据
+restore database [数据库名] from [备份设备名] with file=2,recovery
+
+--- 事务日志备份 ----
+backup <span class="built_in">log</span> [数据库名] to [备份设备名]
+--- 事务日志备份还原 ---
+--先还原最近的一次完整备份数据
+restore database [数据库名] from [备份设备名] with file=1,norecovery
+--再还原最近一次的差异备份数据,stopat表示把数据还原到这一时间点前
+restore database [数据库名] from [备份设备名] with file=2,stopat=<span class="string">'2018-09-06 11:00:00'</span>,recovery
+</code></pre>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年09月15日 15:14</p>
+        <p>原始链接： <a class="post-url" href="/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/" title="SQL server 2008 R2安装及操作数据库的命令">http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/</a></p>
+        <footer>
+            <a href="http://www.yeguangjie.xyz">
+                <img src="/images/logo.png" alt="Ye GuangJie">
+                Ye GuangJie
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/&title=《SQL server 2008 R2安装及操作数据库的命令》 — YGJ的博客&pic=/images/2018-09-09_1_miho.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/&title=《SQL server 2008 R2安装及操作数据库的命令》 — YGJ的博客&source=希望我的分享可以帮助到你" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SQL server 2008 R2安装及操作数据库的命令》 — YGJ的博客&url=http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/&via=http://www.yeguangjie.xyz" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://www.yeguangjie.xyz/2018/09/09/4-SQL server 2008 R2安装及操作数据库的命令-2018-09-09/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/SQLserver2008R2/" class="color4">SQL server 2008 R2</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、安装SQL-server-2008-R2"><span class="post-toc-text">一、安装SQL server 2008 R2</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、数据库的相关命令"><span class="post-toc-text">二、数据库的相关命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-1、关系模型"><span class="post-toc-text">2.1、关系模型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2、创建数据库、数据表"><span class="post-toc-text">2.2、创建数据库、数据表</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-3、增删改"><span class="post-toc-text">2.3、增删改</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-4、查询数据"><span class="post-toc-text">2.4、查询数据</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、sql-server新建用户"><span class="post-toc-text">三、sql server新建用户</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-1、sql-server新建用户"><span class="post-toc-text">3.1、sql server新建用户</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-2、给新建用户赋数据库权限"><span class="post-toc-text">3.2、给新建用户赋数据库权限</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-3、给新建用户赋数据表权限"><span class="post-toc-text">3.3、给新建用户赋数据表权限</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、数据库的备份与还原"><span class="post-toc-text">四、数据库的备份与还原</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-1-图形化界面操作"><span class="post-toc-text">4.1 图形化界面操作</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-2、命令行"><span class="post-toc-text">4.2、命令行</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/09/09/the-资源分享-2018-09-09/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          资源分享
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/08/31/3_WAS基本概念与相关配置_2018-08-30/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">WAS基本概念与相关配置</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 Ye GuangJie<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://www.yeguangjie.xyz",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/IDE/">IDE</a><a class="category-link" href="/categories/应用服务器/">应用服务器</a><a class="category-link" href="/categories/数据库/">数据库</a><a class="category-link" href="/categories/资源分享/">资源分享</a><a class="category-link" href="/categories/非技术分享/">非技术分享</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Oracle-11g/" style="font-size: 10px;">Oracle 11g</a> <a href="/tags/SQL-server-2008-R2/" style="font-size: 10px;">SQL server 2008 R2</a> <a href="/tags/WebSphere-Application-Server/" style="font-size: 10px;">WebSphere Application Server</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/资源分享/" style="font-size: 10px;">资源分享</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>首页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>档案</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Oracle-11g/" style="font-size: 10px;">Oracle 11g</a> <a href="/tags/SQL-server-2008-R2/" style="font-size: 10px;">SQL server 2008 R2</a> <a href="/tags/WebSphere-Application-Server/" style="font-size: 10px;">WebSphere Application Server</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/资源分享/" style="font-size: 10px;">资源分享</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>

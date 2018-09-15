@@ -3,22 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>YGJ的博客</title>
+  <title>Oracle 11g安装及操作数据库的命令 | YGJ的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="yeguangjie,yeguangjie's Blog" />
   
-  <meta name="description" content="关于我从事 WEB 开发，Java后端，毕业于一所普通二本本科院校，专业是计算机学院-电子信息工程（信息安全） 关于工作城市：广州2017.6-2017.8 北京天融信科技有限公司广州分公司 从事安全服务的工作2017.6-至今 江门市赛美科斯软件系统开发有限公司 从事Java实习生的工作 关于学习希望每天能够写一篇技术博客 每天进步一点点最后能成为一个很厉害的人最近学习方向：Spring框架 关">
-<meta property="og:type" content="website">
-<meta property="og:title" content="YGJ的博客">
-<meta property="og:url" content="http://www.yeguangjie.xyz/about/index.html">
+  <meta name="description" content="一、安装Oracle 11g&amp;emsp;&amp;emsp;安装SQL server 2008 R2 基于window server 2008，所以我们首先要在虚拟机上安装window server 2008系统，安装好之后需要安装Microsoft .net framework 3.5组件。 二、outline中图标的含义 &amp;emsp;&amp;emsp;这是我刚刚新建的一个Test类，其中实心的表示方法，空心">
+<meta name="keywords" content="Oracle 11g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle 11g安装及操作数据库的命令">
+<meta property="og:url" content="http://www.yeguangjie.xyz/2018/09/10/5-Oracle安装及操作数据库的命令-2018-09-09/index.html">
 <meta property="og:site_name" content="YGJ的博客">
-<meta property="og:description" content="关于我从事 WEB 开发，Java后端，毕业于一所普通二本本科院校，专业是计算机学院-电子信息工程（信息安全） 关于工作城市：广州2017.6-2017.8 北京天融信科技有限公司广州分公司 从事安全服务的工作2017.6-至今 江门市赛美科斯软件系统开发有限公司 从事Java实习生的工作 关于学习希望每天能够写一篇技术博客 每天进步一点点最后能成为一个很厉害的人最近学习方向：Spring框架 关">
+<meta property="og:description" content="一、安装Oracle 11g&amp;emsp;&amp;emsp;安装SQL server 2008 R2 基于window server 2008，所以我们首先要在虚拟机上安装window server 2008系统，安装好之后需要安装Microsoft .net framework 3.5组件。 二、outline中图标的含义 &amp;emsp;&amp;emsp;这是我刚刚新建的一个Test类，其中实心的表示方法，空心">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2017-11-19T08:12:24.674Z">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2017-11-20_1_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2017-11-20_2_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2017-11-20_3_miho.png">
+<meta property="og:image" content="http://www.yeguangjie.xyz/images/2017-11-20_4_miho.png">
+<meta property="og:updated_time" content="2018-09-10T07:05:59.530Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="YGJ的博客">
-<meta name="twitter:description" content="关于我从事 WEB 开发，Java后端，毕业于一所普通二本本科院校，专业是计算机学院-电子信息工程（信息安全） 关于工作城市：广州2017.6-2017.8 北京天融信科技有限公司广州分公司 从事安全服务的工作2017.6-至今 江门市赛美科斯软件系统开发有限公司 从事Java实习生的工作 关于学习希望每天能够写一篇技术博客 每天进步一点点最后能成为一个很厉害的人最近学习方向：Spring框架 关">
+<meta name="twitter:title" content="Oracle 11g安装及操作数据库的命令">
+<meta name="twitter:description" content="一、安装Oracle 11g&amp;emsp;&amp;emsp;安装SQL server 2008 R2 基于window server 2008，所以我们首先要在虚拟机上安装window server 2008系统，安装好之后需要安装Microsoft .net framework 3.5组件。 二、outline中图标的含义 &amp;emsp;&amp;emsp;这是我刚刚新建的一个Test类，其中实心的表示方法，空心">
+<meta name="twitter:image" content="http://www.yeguangjie.xyz/images/2017-11-20_1_miho.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -106,30 +112,54 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-5-Oracle安装及操作数据库的命令-2018-09-09" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-    <div class="article-entry " itemprop="articleBody">
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Oracle 11g安装及操作数据库的命令
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/数据库/">数据库</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-09-10
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h3 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h3><p>从事 WEB 开发，Java后端，毕业于一所普通二本本科院校，专业是计算机学院-电子信息工程（信息安全）</p>
-<h3 id="关于工作"><a href="#关于工作" class="headerlink" title="关于工作"></a>关于工作</h3><p>城市：<code>广州</code><br>2017.6-2017.8 北京天融信科技有限公司广州分公司 从事安全服务的工作<br>2017.6-至今 江门市赛美科斯软件系统开发有限公司 从事Java实习生的工作</p>
-<h3 id="关于学习"><a href="#关于学习" class="headerlink" title="关于学习"></a>关于学习</h3><p>希望每天能够写一篇技术博客</p>
-<p>每天进步一点点<br>最后能成为一个很厉害的人<br>最近学习方向：Spring框架</p>
-<h3 id="关于座右铭"><a href="#关于座右铭" class="headerlink" title="关于座右铭"></a>关于座右铭</h3><blockquote>
-<p>没有付出就没有收获（No pains No gains）</p>
-</blockquote>
-<h3 id="关于爱好"><a href="#关于爱好" class="headerlink" title="关于爱好"></a>关于爱好</h3><p>热爱<code>运动</code>，尤其喜爱<code>电影</code>、<code>听歌</code>、<code>思考</code>。</p>
-<h3 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h3><ul>
-<li>Blog: <a href="http://yeguangjie.xyz" target="_blank" rel="noopener">blog</a></li>
-<li>Email: <a href="mailto:ye_guangjie@163.com" target="_blank" rel="noopener">ye_guangjie@163.com</a></li>
-<li>GitHub: <a href="https://github.com/yeguangjie" target="_blank" rel="noopener">github</a></li>
-</ul>
+            <h3 id="一、安装Oracle-11g"><a href="#一、安装Oracle-11g" class="headerlink" title="一、安装Oracle 11g"></a>一、安装Oracle 11g</h3><p>&emsp;&emsp;安装SQL server 2008 R2 基于window server 2008，所以我们首先要在虚拟机上安装window server 2008系统，安装好之后需要安装Microsoft .net framework 3.5组件。</p>
+<h3 id="二、outline中图标的含义"><a href="#二、outline中图标的含义" class="headerlink" title="二、outline中图标的含义"></a>二、outline中图标的含义</h3><p><img src="/images/2017-11-20_1_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;这是我刚刚新建的一个Test类，其中实心的表示方法，空心的表示变量；、<br>其中空心和实心里面都有圆形、菱形、三角形和正方形，圆形表示public，菱形表示protected，三角形表示无修饰符（default），正方形表示private，他们的作用域如下表所示。</p>
+<p><img src="/images/2017-11-20_2_miho.png" alt="图片"></p>
+<p>&emsp;&emsp;其中颜色是与形状相匹配的，比如圆形是绿色，三角形是蓝色；<br>每个图表右边都会有小字母，代表这个变量/方法上的其他修饰符，如S表示static静态，F表示final，A表示abstract抽象,如果是一个小钟表的图标，则表示synchronized同步锁关键字。</p>
+<h3 id="三、更多其他图标含义"><a href="#三、更多其他图标含义" class="headerlink" title="三、更多其他图标含义"></a>三、更多其他图标含义</h3><p>更多具体的打开Help-&gt;Help Contents，搜索JDT Icons,打开即可查看到eclipse所有的图标含义<br><img src="/images/2017-11-20_3_miho.png" alt="图片"></p>
+<p><img src="/images/2017-11-20_4_miho.png" alt="图片"></p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2017年11月19日 16:12</p>
-        <p>原始链接： <a class="post-url" href="/about/index.html" title="">http://www.yeguangjie.xyz/about/index.html</a></p>
+        <p>最后更新： 2018年09月10日 15:05</p>
+        <p>原始链接： <a class="post-url" href="/2018/09/10/5-Oracle安装及操作数据库的命令-2018-09-09/" title="Oracle 11g安装及操作数据库的命令">http://www.yeguangjie.xyz/2018/09/10/5-Oracle安装及操作数据库的命令-2018-09-09/</a></p>
         <footer>
             <a href="http://www.yeguangjie.xyz">
                 <img src="/images/logo.png" alt="Ye GuangJie">
@@ -151,7 +181,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.yeguangjie.xyz/about/&title=YGJ的博客&pic=http://www.yeguangjie.xyzimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.yeguangjie.xyz/2018/09/10/5-Oracle安装及操作数据库的命令-2018-09-09/&title=《Oracle 11g安装及操作数据库的命令》 — YGJ的博客&pic=/images/2018-09-05_1_miho.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -161,22 +191,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.yeguangjie.xyz/about/&title=YGJ的博客&source=希望我的分享可以帮助到你" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.yeguangjie.xyz/2018/09/10/5-Oracle安装及操作数据库的命令-2018-09-09/&title=《Oracle 11g安装及操作数据库的命令》 — YGJ的博客&source=希望我的分享可以帮助到你" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.yeguangjie.xyz/about/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.yeguangjie.xyz/2018/09/10/5-Oracle安装及操作数据库的命令-2018-09-09/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=YGJ的博客&url=http://www.yeguangjie.xyz/about/&via=http://www.yeguangjie.xyz" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Oracle 11g安装及操作数据库的命令》 — YGJ的博客&url=http://www.yeguangjie.xyz/2018/09/10/5-Oracle安装及操作数据库的命令-2018-09-09/&via=http://www.yeguangjie.xyz" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.yeguangjie.xyz/about/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.yeguangjie.xyz/2018/09/10/5-Oracle安装及操作数据库的命令-2018-09-09/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -186,7 +216,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://www.yeguangjie.xyz/about/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://www.yeguangjie.xyz/2018/09/10/5-Oracle安装及操作数据库的命令-2018-09-09/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -195,6 +225,13 @@
         <ul class="article-footer-menu">
             
             
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Oracle11g/" class="color1">Oracle 11g</a>
+      
+  </li>
+
         </ul>
         
     </footer>
@@ -204,10 +241,20 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于我"><span class="post-toc-text">关于我</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于工作"><span class="post-toc-text">关于工作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于学习"><span class="post-toc-text">关于学习</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于座右铭"><span class="post-toc-text">关于座右铭</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于爱好"><span class="post-toc-text">关于爱好</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#联系我"><span class="post-toc-text">联系我</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、安装Oracle-11g"><span class="post-toc-text">一、安装Oracle 11g</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、outline中图标的含义"><span class="post-toc-text">二、outline中图标的含义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、更多其他图标含义"><span class="post-toc-text">三、更多其他图标含义</span></a></li></ol>
         </nav>
     </aside>
     
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/09/the-资源分享-2018-09-09/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">资源分享</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
 
 
 
